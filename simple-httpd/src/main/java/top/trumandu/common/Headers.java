@@ -12,7 +12,10 @@ import java.util.Map;
  */
 public class Headers {
 
-    private static final Map<String, String> data = new LinkedHashMap<>(64);
+    private Map<String, String> data = new LinkedHashMap<>(64);
+
+    public Headers() {
+    }
 
     public Headers(List<String> rawHeaders) {
         assert rawHeaders == null;
@@ -47,7 +50,12 @@ public class Headers {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        data.forEach((key, value) -> builder.append(key).append(":").append(value).append("\n\r"));
+        if (data.size() == 0) {
+            builder.append("\n\r");
+        } else {
+            data.forEach((key, value) -> builder.append(key).append(":").append(value).append("\n\r"));
+        }
+
         return builder.toString();
     }
 }
