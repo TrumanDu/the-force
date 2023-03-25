@@ -96,8 +96,7 @@ public class SimpleHttpV2 {
         OutputStream outputStream = socket.getOutputStream();
         outputStream.write(response.getFirstLine());
         outputStream.write(response.getHeaders().toString().getBytes());
-        outputStream.write("\n\r".getBytes());
-        outputStream.flush();
+        outputStream.write("\r\n".getBytes());
         outputStream.write(response.getBody());
         outputStream.flush();
         outputStream.close();
@@ -112,9 +111,8 @@ public class SimpleHttpV2 {
         byte[] body = ResourcesFileUtil.getResource(path);
         HttpResponse response = new HttpResponse(200, body);
         Headers headers = new Headers();
-        headers.addHeader("Content-Length", "" + body.length);
         headers.addHeader("Content-Type", ContextType.getContextType(suffix));
-        headers.addHeader("Connection", "keep-alive");
+        headers.addHeader("Content-Length", "" + body.length);
         response.setHeaders(headers);
         return response;
     }

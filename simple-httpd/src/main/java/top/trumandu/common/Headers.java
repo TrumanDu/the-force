@@ -53,7 +53,7 @@ public class Headers {
         if (data.size() == 0) {
             builder.append("\n\r");
         } else {
-            data.forEach((key, value) -> builder.append(key).append(":").append(value).append("\n\r"));
+            data.forEach((key, value) -> builder.append(key).append(":").append(value).append("\r\n"));
         }
 
         return builder.toString();

@@ -36,9 +36,10 @@ public class ResourcesFileUtil {
         ByteBuffer buffer = ByteBuffer.allocate((int) channel.size());
         channel.read(buffer);
         buffer.flip();
+        byte[] result = buffer.array();
         channel.close();
         accessFile.close();
-        return buffer.array();
+        return result;
     }
 
     public static void main(String[] args) throws IOException {
