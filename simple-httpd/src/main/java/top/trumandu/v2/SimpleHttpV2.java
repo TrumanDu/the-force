@@ -82,6 +82,10 @@ public class SimpleHttpV2 {
             }
             boolean flag = ResourcesFileUtil.isExistFile(path);
             if (!flag) {
+                path = request.getPath() + "/index.html";
+                flag = ResourcesFileUtil.isExistFile(path);
+            }
+            if (!flag) {
                 response = handle404();
             } else {
                 response = handleOk(path);
