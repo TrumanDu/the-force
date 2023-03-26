@@ -14,7 +14,6 @@ import java.net.Socket;
  */
 public class SimpleHttp {
     private static int port;
-
     public static void main(String[] args) throws IOException {
         int port = 8080;
         ServerSocket ss = new ServerSocket(port);
@@ -32,18 +31,15 @@ public class SimpleHttp {
                 }
                 System.out.println(line);
             }
-
             String response = """
                     HTTP/1.1 200 OK
 
                     Hello, World!
                     """;
-
             OutputStream outputStream = socket.getOutputStream();
             outputStream.write(response.getBytes());
             outputStream.flush();
             outputStream.close();
-
         }
     }
 }

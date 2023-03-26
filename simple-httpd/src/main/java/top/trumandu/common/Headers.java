@@ -20,9 +20,11 @@ public class Headers {
     public Headers(List<String> rawHeaders) {
         assert rawHeaders == null;
         rawHeaders.forEach(str -> {
-            String name = str.split(":", 2)[0];
-            String value = str.split(":", 2)[1];
-            data.put(name, value);
+            if (str != null && str.indexOf(":") > 0) {
+                String name = str.split(":", 2)[0];
+                String value = str.split(":", 2)[1];
+                data.put(name, value);
+            }
         });
     }
 
